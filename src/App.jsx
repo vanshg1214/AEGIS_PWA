@@ -9,7 +9,7 @@ function App() {
   const { deferredPrompt, isAppInstalled, isIOS, installApp } = usePWAInstall();
   const [showInstallBanner, setShowInstallBanner] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
-  const targetUrl = 'https://www.hambresucks.com';
+  const targetUrl = 'https://merchant-form-one.vercel.app/';
 
   const handleRedirect = useCallback(() => {
     if (isRedirecting) return;
@@ -64,13 +64,13 @@ function App() {
       </div>
 
       <div className="container animate-fade-in">
-        <div className="logo-wrapper delay-1">
+        <div className="logo-wrapper delay-1" onClick={handleRedirect} style={{ cursor: 'pointer' }}>
           <img src="/icons/app-icon.png" alt="Hambre Logo" className="logo-img" />
         </div>
         
         <h1 className="title delay-2">Hambre Sucks</h1>
         <p className="subtitle delay-3">
-          Access instantly from your home screen for a seamless, fast experience.
+          Accede instantáneamente desde tu pantalla de inicio para una experiencia rápida y sin interrupciones.
         </p>
 
         <div className="button-group delay-3">
