@@ -2,11 +2,11 @@ import { useState, useEffect, useCallback } from 'react';
 import { usePWAInstall } from './hooks/usePWAInstall';
 import { InstallBanner } from './components/InstallBanner';
 import { IOSInstructions } from './components/IOSInstructions';
-import { Download, ArrowRight } from 'lucide-react';
+import { Download, Check } from 'lucide-react';
 import './index.css';
 
 function App() {
-  const { deferredPrompt, isAppInstalled, isIOS, installApp } = usePWAInstall();
+  const { deferredPrompt, isStandalone, isInstalled, isIOS, installApp } = usePWAInstall();
   const [showInstallBanner, setShowInstallBanner] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
   const targetUrl = 'https://www.aegisltd.co';
@@ -20,42 +20,47 @@ function App() {
   }, [isRedirecting, targetUrl]);
 
   const handleInstallAction = async () => {
+    if (isInstalled) return;
+
     if (deferredPrompt) {
       await installApp();
       setShowInstallBanner(false);
     } else if (isIOS) {
-      // Scroll to instructions
       const contactInfo = document.querySelector('.ios-instruction');
       if (contactInfo) {
         contactInfo.scrollIntoView({ behavior: 'smooth' });
       }
-    } else {
-      // Fallback: If no install prompt is available, just redirect to site
-      handleRedirect();
     }
   };
 
   useEffect(() => {
-    // If the app is already installed, or opened in standalone mode, redirect automatically
-    if (isAppInstalled) {
+    // Only redirect if opened in standalone mode
+    if (isStandalone) {
       setTimeout(handleRedirect, 0);
     }
-  }, [isAppInstalled, handleRedirect]);
+  }, [isStandalone, handleRedirect]);
 
   useEffect(() => {
-    // Show install banner if prompt is available, and hasn't been dismissed in this session
-    if (deferredPrompt && !sessionStorage.getItem('bannerDismissed')) {
+    if (deferredPrompt && !sessionStorage.getItem('bannerDismissed') && !isInstalled && !isStandalone) {
       const timer = setTimeout(() => {
         setShowInstallBanner(true);
       }, 1500);
       return () => clearTimeout(timer);
     }
-  }, [deferredPrompt]);
+  }, [deferredPrompt, isInstalled, isStandalone]);
 
   const dismissBanner = () => {
     setShowInstallBanner(false);
     sessionStorage.setItem('bannerDismissed', 'true');
   };
+
+  if (isStandalone) {
+    return (
+      <div className={`loader-wrapper active`}>
+        <div className="spinner"></div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -64,7 +69,7 @@ function App() {
       </div>
 
       <div className="container animate-fade-in">
-        <div className="logo-wrapper delay-1" onClick={handleRedirect} style={{ cursor: 'pointer' }}>
+        <div className="logo-wrapper delay-1">
           <img src="/icons/AEGIS-REVISION-1 (1)-photoaidcom-cropped.jpg" alt="AEGIS Logo" className="logo-img" />
         </div>
         
@@ -74,15 +79,17 @@ function App() {
         </p>
 
         <div className="button-group delay-3">
-          <button className="btn btn-primary" onClick={handleInstallAction}>
-            <Download size={20} />
-            Download App
+          <button 
+            className={`btn ${isInstalled ? 'btn-secondary' : 'btn-primary'}`} 
+            onClick={handleInstallAction}
+            disabled={isInstalled}
+          >
+            {isInstalled ? <Check size={20} /> : <Download size={20} />}
+            {isInstalled ? 'Downloaded' : 'Download App'}
           </button>
-
-
         </div>
 
-        {isIOS && !isAppInstalled && <IOSInstructions />}
+        {isIOS && !isInstalled && <IOSInstructions />}
       </div>
 
       <InstallBanner 

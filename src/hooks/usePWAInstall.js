@@ -10,23 +10,32 @@ export const usePWAInstall = () => {
     return /iphone|ipad|ipod/.test(userAgent) || isIPad;
   });
 
-  const [isAppInstalled, setIsAppInstalled] = useState(() => {
+  const [isStandalone] = useState(() => {
     if (typeof window === 'undefined') return false;
     return ('standalone' in window.navigator && window.navigator.standalone) ||
       window.matchMedia('(display-mode: standalone)').matches;
+  });
+
+  const [isInstalled, setIsInstalled] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return localStorage.getItem('pwa_installed') === 'true' || 
+           ('standalone' in window.navigator && window.navigator.standalone) ||
+           window.matchMedia('(display-mode: standalone)').matches;
   });
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
+      setIsInstalled(false);
+      localStorage.setItem('pwa_installed', 'false');
     };
 
     const handleAppInstalled = () => {
-      setIsAppInstalled(true);
+      setIsInstalled(true);
       setDeferredPrompt(null);
+      localStorage.setItem('pwa_installed', 'true');
       console.log('PWA was installed');
-      // Analytics can go here
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -43,8 +52,12 @@ export const usePWAInstall = () => {
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
     console.log(`User response to the install prompt: ${outcome}`);
+    if (outcome === 'accepted') {
+      setIsInstalled(true);
+      localStorage.setItem('pwa_installed', 'true');
+    }
     setDeferredPrompt(null);
   };
 
-  return { deferredPrompt, isAppInstalled, isIOS, installApp };
+  return { deferredPrompt, isStandalone, isInstalled, isIOS, installApp };
 };
