@@ -33,8 +33,7 @@ function App() {
       if (contactInfo) {
         contactInfo.scrollIntoView({ behavior: 'smooth' });
       }
-    } else {
-      alert("Your browser doesn't support automatic installation. Please use your browser's menu and tap 'Add to Home Screen' or 'Install App'.");
+      alert("Tu navegador no soporta la instalación automática. Por favor, usa el menú de tu navegador y pulsa 'Añadir a la pantalla de inicio' o 'Instalar aplicación'.");
     }
   };
 
@@ -94,7 +93,7 @@ function App() {
         
         <h1 className="title delay-2">AEGIS</h1>
         <p className="subtitle delay-3">
-          Download the app for instant access from your home screen.
+          Descarga la aplicación para acceder al instante desde tu pantalla de inicio.
         </p>
 
         <div className="button-group delay-3">
