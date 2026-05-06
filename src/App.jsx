@@ -9,7 +9,7 @@ function App() {
   const { deferredPrompt, isAppInstalled, isIOS, installApp } = usePWAInstall();
   const [showInstallBanner, setShowInstallBanner] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
-  const targetUrl = 'https://merchant-form-one.vercel.app/';
+  const targetUrl = 'https://www.aegisltd.co';
 
   const handleRedirect = useCallback(() => {
     if (isRedirecting) return;
@@ -65,10 +65,10 @@ function App() {
 
       <div className="container animate-fade-in">
         <div className="logo-wrapper delay-1" onClick={handleRedirect} style={{ cursor: 'pointer' }}>
-          <img src="/icons/app-icon.png" alt="Hambre Logo" className="logo-img" />
+          <img src="/icons/AEGIS-REVISION-1 (1)-photoaidcom-cropped.jpg" alt="AEGIS Logo" className="logo-img" />
         </div>
         
-        <h1 className="title delay-2">Hambre Sucks</h1>
+        <h1 className="title delay-2">AEGIS</h1>
         <p className="subtitle delay-3">
           Accede instantáneamente desde tu pantalla de inicio para una experiencia rápida y sin interrupciones.
         </p>

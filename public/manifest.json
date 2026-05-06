@@ -1,7 +1,7 @@
 {
-  "name": "Hambre Sucks",
-  "short_name": "Hambre Sucks",
-  "description": "Access Hambre Sucks instantly from your home screen.",
+  "name": "AEGIS",
+  "short_name": "AEGIS",
+  "description": "Access AEGIS instantly from your home screen.",
   "start_url": "/",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
@@ -9,22 +9,22 @@
   "theme_color": "#EAB308",
   "icons": [
     {
-      "src": "/icons/app-icon.png",
+      "src": "/icons/AEGIS-REVISION-1 (1)-photoaidcom-cropped.jpg",
       "sizes": "1024x1024",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/jpeg",
+      "purpose": "any"
     },
     {
-      "src": "/icons/app-icon.png",
+      "src": "/icons/AEGIS-REVISION-1 (1)-photoaidcom-cropped.jpg",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/jpeg",
+      "purpose": "any"
     },
     {
-      "src": "/icons/app-icon.png",
+      "src": "/icons/AEGIS-REVISION-1 (1)-photoaidcom-cropped.jpg",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/jpeg",
+      "purpose": "any"
     }
   ],
   "orientation": "portrait-primary"
