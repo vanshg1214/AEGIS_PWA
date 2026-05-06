@@ -30,6 +30,8 @@ function App() {
       if (contactInfo) {
         contactInfo.scrollIntoView({ behavior: 'smooth' });
       }
+    } else {
+      alert("It looks like the app is already installed or your browser requires manual installation. You can install it from your browser's menu (e.g. 'Add to Home screen' or 'Install app').");
     }
   };
 
@@ -70,7 +72,7 @@ function App() {
 
       <div className="container animate-fade-in">
         <div className="logo-wrapper delay-1">
-          <img src="/icons/AEGIS-REVISION-1 (1)-photoaidcom-cropped.jpg" alt="AEGIS Logo" className="logo-img" />
+          <img src="/icons/aegis-logo.jpg" alt="AEGIS Logo" className="logo-img" />
         </div>
         
         <h1 className="title delay-2">AEGIS</h1>

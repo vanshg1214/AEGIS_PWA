@@ -18,8 +18,7 @@ export const usePWAInstall = () => {
 
   const [isInstalled, setIsInstalled] = useState(() => {
     if (typeof window === 'undefined') return false;
-    return localStorage.getItem('pwa_installed') === 'true' || 
-           ('standalone' in window.navigator && window.navigator.standalone) ||
+    return ('standalone' in window.navigator && window.navigator.standalone) ||
            window.matchMedia('(display-mode: standalone)').matches;
   });
 
@@ -28,13 +27,11 @@ export const usePWAInstall = () => {
       e.preventDefault();
       setDeferredPrompt(e);
       setIsInstalled(false);
-      localStorage.setItem('pwa_installed', 'false');
     };
 
     const handleAppInstalled = () => {
       setIsInstalled(true);
       setDeferredPrompt(null);
-      localStorage.setItem('pwa_installed', 'true');
       console.log('PWA was installed');
     };
 
@@ -54,7 +51,6 @@ export const usePWAInstall = () => {
     console.log(`User response to the install prompt: ${outcome}`);
     if (outcome === 'accepted') {
       setIsInstalled(true);
-      localStorage.setItem('pwa_installed', 'true');
     }
     setDeferredPrompt(null);
   };
