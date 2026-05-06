@@ -2,11 +2,11 @@ import { useState, useEffect, useCallback } from 'react';
 import { usePWAInstall } from './hooks/usePWAInstall';
 import { InstallBanner } from './components/InstallBanner';
 import { IOSInstructions } from './components/IOSInstructions';
-import { Download, Check } from 'lucide-react';
+import { Download, Check, Loader } from 'lucide-react';
 import './index.css';
 
 function App() {
-  const { deferredPrompt, isStandalone, isInstalled, isIOS, installApp } = usePWAInstall();
+  const { deferredPrompt, isStandalone, isInstalled, isInstalling, isIOS, installApp } = usePWAInstall();
   const [showInstallBanner, setShowInstallBanner] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
   const targetUrl = 'https://www.aegisltd.co';
@@ -20,23 +20,26 @@ function App() {
   }, [isRedirecting, targetUrl]);
 
   const handleInstallAction = async () => {
-    if (isInstalled) return;
+    // Don't do anything if already installed or currently installing
+    if (isInstalled || isInstalling) return;
 
     if (deferredPrompt) {
-      await installApp();
-      setShowInstallBanner(false);
+      const result = await installApp();
+      if (result) {
+        setShowInstallBanner(false);
+      }
     } else if (isIOS) {
       const contactInfo = document.querySelector('.ios-instruction');
       if (contactInfo) {
         contactInfo.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      alert("It looks like the app is already installed or your browser requires manual installation. You can install it from your browser's menu (e.g. 'Add to Home screen' or 'Install app').");
+      alert("Your browser doesn't support automatic installation. Please use your browser's menu and tap 'Add to Home Screen' or 'Install App'.");
     }
   };
 
   useEffect(() => {
-    // Only redirect if opened in standalone mode
+    // Only redirect if opened in standalone mode (user opened the installed PWA)
     if (isStandalone) {
       setTimeout(handleRedirect, 0);
     }
@@ -56,6 +59,7 @@ function App() {
     sessionStorage.setItem('bannerDismissed', 'true');
   };
 
+  // If opened as installed PWA, just show loader and redirect
   if (isStandalone) {
     return (
       <div className={`loader-wrapper active`}>
@@ -63,6 +67,19 @@ function App() {
       </div>
     );
   }
+
+  // Determine button state
+  const getButtonContent = () => {
+    if (isInstalled) {
+      return { icon: <Check size={20} />, text: 'Downloaded', className: 'btn btn-success', disabled: true };
+    }
+    if (isInstalling) {
+      return { icon: <Loader size={20} className="spin-icon" />, text: 'Installing...', className: 'btn btn-installing', disabled: true };
+    }
+    return { icon: <Download size={20} />, text: 'Download App', className: 'btn btn-primary', disabled: false };
+  };
+
+  const buttonState = getButtonContent();
 
   return (
     <>
@@ -77,17 +94,17 @@ function App() {
         
         <h1 className="title delay-2">AEGIS</h1>
         <p className="subtitle delay-3">
-          Accede instantáneamente desde tu pantalla de inicio para una experiencia rápida y sin interrupciones.
+          Download the app for instant access from your home screen.
         </p>
 
         <div className="button-group delay-3">
           <button 
-            className={`btn ${isInstalled ? 'btn-secondary' : 'btn-primary'}`} 
+            className={buttonState.className} 
             onClick={handleInstallAction}
-            disabled={isInstalled}
+            disabled={buttonState.disabled}
           >
-            {isInstalled ? <Check size={20} /> : <Download size={20} />}
-            {isInstalled ? 'Downloaded' : 'Download App'}
+            {buttonState.icon}
+            {buttonState.text}
           </button>
         </div>
 

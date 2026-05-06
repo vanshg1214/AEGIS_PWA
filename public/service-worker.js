@@ -1,11 +1,11 @@
-const CACHE_NAME = 'hambre-pwa-cache-v1';
+const CACHE_NAME = 'aegis-pwa-cache-v2';
 const OFFLINE_URL = '/';
 
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/icons/app-icon.png'
+  '/icons/aegis-logo.jpg'
 ];
 
 self.addEventListener('install', (event) => {
