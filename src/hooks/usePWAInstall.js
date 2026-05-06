@@ -18,8 +18,19 @@ export const usePWAInstall = () => {
       window.matchMedia('(display-mode: standalone)').matches;
   });
 
-  // Only true when the browser confirms installation via the appinstalled event
-  const [isInstalled, setIsInstalled] = useState(false);
+  // Check localStorage and standalone mode to remember installation state across reloads
+  const [isInstalled, setIsInstalled] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    
+    // If they are currently using the PWA, it's definitely installed
+    if (('standalone' in window.navigator && window.navigator.standalone) ||
+        window.matchMedia('(display-mode: standalone)').matches) {
+      return true;
+    }
+    
+    // Otherwise, check if we remember installing it
+    return localStorage.getItem('pwa_installed') === 'true';
+  });
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e) => {
@@ -27,9 +38,10 @@ export const usePWAInstall = () => {
       console.log('[PWA] beforeinstallprompt fired — app is installable');
       promptRef.current = e;
       setDeferredPrompt(e);
-      // If this event fires, the app is NOT installed
+      // If this event fires, the browser confirms the app is NOT installed
       setIsInstalled(false);
       setIsInstalling(false);
+      localStorage.setItem('pwa_installed', 'false'); // Reset just in case they uninstalled
     };
 
     const handleAppInstalled = () => {
@@ -38,6 +50,7 @@ export const usePWAInstall = () => {
       setIsInstalling(false);
       setDeferredPrompt(null);
       promptRef.current = null;
+      localStorage.setItem('pwa_installed', 'true'); // Remember for next reload
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
