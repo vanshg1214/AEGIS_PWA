@@ -1,0 +1,234 @@
+.form-page-wrapper {
+  background-color: #12100E;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 1rem;
+}
+
+.form-container {
+  max-width: 500px;
+  width: 100%;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #FAFAF9;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.form-header h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  color: #EFEFEF;
+  letter-spacing: 0.5px;
+}
+
+.form-header p {
+  color: #A09E9C;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.delivery-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-section {
+  background-color: #22201F;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-icon {
+  color: #F2B705;
+}
+
+.section-title h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #FAFAF9;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #D1D1D1;
+}
+
+.input-wrapper, .textarea-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  color: #7A7875;
+}
+
+.input-no-icon, .input-wrapper input {
+  width: 100%;
+  background-color: #1E1C1B;
+  border: 1px solid #32302F;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  color: #FAFAF9;
+  font-family: inherit;
+  font-size: 0.85rem;
+  transition: border-color 0.2s;
+}
+
+.input-wrapper input {
+  padding-left: 2.7rem;
+}
+
+.input-no-icon:focus, .input-wrapper input:focus, .textarea-wrapper textarea:focus {
+  outline: none;
+  border-color: #F2B705;
+}
+
+.input-no-icon::placeholder, .input-wrapper input::placeholder, .textarea-wrapper textarea::placeholder {
+  color: #7A7875;
+}
+
+.textarea-wrapper textarea {
+  width: 100%;
+  background-color: #1E1C1B;
+  border: 1px solid #32302F;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  min-height: 90px;
+  resize: vertical;
+  color: #FAFAF9;
+  font-family: inherit;
+  font-size: 0.85rem;
+}
+
+.edit-icon {
+  position: absolute;
+  bottom: 0.8rem;
+  right: 0.8rem;
+  color: #FAFAF9;
+  background-color: #22201F;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.collection-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.btn-pickup, .btn-schedule {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-pickup {
+  background-color: #F2B705;
+  color: #12100E;
+  border: none;
+}
+
+.btn-pickup:hover {
+  background-color: #DDA605;
+}
+
+.btn-schedule {
+  background-color: #1E1C1B;
+  color: #EFEFEF;
+  border: 1px solid #32302F;
+}
+
+.btn-schedule:hover {
+  background-color: #2A2827;
+}
+
+.btn-support {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 1rem;
+  background-color: rgba(220, 38, 38, 0.05);
+  border: 1px dashed rgba(220, 38, 38, 0.4);
+  border-radius: 12px;
+  color: #EFEFEF;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.btn-support:hover {
+  background-color: rgba(220, 38, 38, 0.1);
+}
+
+.support-icon {
+  color: #DC2626;
+}
+
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 1.1rem;
+  background-color: #F2B705;
+  color: #12100E;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-submit:hover {
+  background-color: #DDA605;
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}

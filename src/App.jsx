@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { usePWAInstall } from './hooks/usePWAInstall';
 import { InstallBanner } from './components/InstallBanner';
 import { IOSInstructions } from './components/IOSInstructions';
@@ -6,6 +7,7 @@ import { Download, Check, Loader } from 'lucide-react';
 import './index.css';
 
 function App() {
+  const navigate = useNavigate();
   const { deferredPrompt, isStandalone, isInstalled, isInstalling, isIOS, installApp } = usePWAInstall();
   const [showInstallBanner, setShowInstallBanner] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
@@ -27,6 +29,7 @@ function App() {
       const result = await installApp();
       if (result) {
         setShowInstallBanner(false);
+        navigate('/form');
       }
     } else if (isIOS) {
       const contactInfo = document.querySelector('.ios-instruction');
