@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './DeliveryForm.css';
-import { CreditCard, User, Phone, Edit2, Calendar, HeadphonesIcon, Truck, Target, FileText, MapPin, Loader } from 'lucide-react';
+import { CreditCard, User, Phone, Edit2, Calendar, Headphones, Truck, Target, FileText, MapPin, Loader } from 'lucide-react';
 
 const DeliveryForm = () => {
   const [formData, setFormData] = useState({
@@ -208,7 +208,7 @@ const DeliveryForm = () => {
           </div>
 
           <button type="button" className="btn-support">
-            <HeadphonesIcon size={18} className="support-icon" />
+            <Headphones size={18} className="support-icon" />
             <span>¿Necesita ayuda o desea cancelar? Llame a Soporte: <strong>+1 (800) HUNGER-SUCKS</strong></span>
           </button>
 
