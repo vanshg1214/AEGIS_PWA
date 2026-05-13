@@ -78,19 +78,19 @@ const DeliveryForm = () => {
     <div className="form-page-wrapper">
       <div className="form-container">
         <div className="form-header">
-          <h1>DELIVERY REQUEST</h1>
-          <p>Please complete the details below to schedule your<br />delivery.</p>
+          <h1>SOLICITUD DE ENTREGA</h1>
+          <p>Por favor, complete los detalles a continuación para programar su<br />entrega.</p>
         </div>
 
         {submitStatus === 'success' && (
           <div style={{ backgroundColor: 'rgba(34, 197, 94, 0.1)', border: '1px solid #22c55e', color: '#22c55e', padding: '1rem', borderRadius: '8px', marginBottom: '1.5rem', textAlign: 'center' }}>
-            Delivery request submitted successfully!
+            ¡Solicitud de entrega enviada con éxito!
           </div>
         )}
 
         {submitStatus === 'error' && (
           <div style={{ backgroundColor: 'rgba(220, 38, 38, 0.1)', border: '1px solid #dc2626', color: '#dc2626', padding: '1rem', borderRadius: '8px', marginBottom: '1.5rem', textAlign: 'center' }}>
-            There was an error submitting the request. Please try again.
+            Hubo un error al enviar la solicitud. Por favor, inténtelo de nuevo.
           </div>
         )}
 
@@ -99,32 +99,32 @@ const DeliveryForm = () => {
           <div className="form-section">
             <div className="section-title">
               <User size={18} className="section-icon" />
-              <h2>Sender Information</h2>
+              <h2>Información del Remitente</h2>
             </div>
             
             <div className="form-group">
-              <label>Merchant Account Number</label>
+              <label>Número de Cuenta de Comercio</label>
               <div className="input-wrapper">
                 <CreditCard size={18} className="input-icon" />
-                <input type="text" name="senderMerchantAccount" value={formData.senderMerchantAccount} onChange={handleChange} placeholder="Enter the merchant's account number" required />
+                <input type="text" name="senderMerchantAccount" value={formData.senderMerchantAccount} onChange={handleChange} placeholder="Ingrese el número de cuenta del comercio" required />
               </div>
             </div>
 
             <div className="form-group">
-              <label>Driver's Number</label>
+              <label>Número del Conductor</label>
               <div className="input-wrapper">
                 <User size={18} className="input-icon" />
-                <input type="text" name="senderDriverNumber" value={formData.senderDriverNumber} onChange={handleChange} placeholder="ID of assigned driver" />
+                <input type="text" name="senderDriverNumber" value={formData.senderDriverNumber} onChange={handleChange} placeholder="ID del conductor asignado" />
               </div>
             </div>
 
             <div className="form-group">
-              <label>Full Name</label>
-              <input type="text" name="senderFullName" value={formData.senderFullName} onChange={handleChange} placeholder="Enter the sender's name" className="input-no-icon" required />
+              <label>Nombre Completo</label>
+              <input type="text" name="senderFullName" value={formData.senderFullName} onChange={handleChange} placeholder="Ingrese el nombre del remitente" className="input-no-icon" required />
             </div>
 
             <div className="form-group">
-              <label>Phone number</label>
+              <label>Número de teléfono</label>
               <div className="input-wrapper">
                 <Phone size={18} className="input-icon" />
                 <input type="tel" name="senderPhone" value={formData.senderPhone} onChange={handleChange} placeholder="(000) 000 0000" required />
@@ -132,9 +132,9 @@ const DeliveryForm = () => {
             </div>
 
             <div className="form-group">
-              <label>Address</label>
+              <label>Dirección</label>
               <div className="textarea-wrapper">
-                <textarea name="senderAddress" value={formData.senderAddress} onChange={handleChange} placeholder="Street, City, State, Zip Code" required></textarea>
+                <textarea name="senderAddress" value={formData.senderAddress} onChange={handleChange} placeholder="Calle, Ciudad, Estado, Código Postal" required></textarea>
                 <Edit2 size={16} className="edit-icon" />
               </div>
             </div>
@@ -144,16 +144,16 @@ const DeliveryForm = () => {
           <div className="form-section">
             <div className="section-title">
               <MapPin size={18} className="section-icon" />
-              <h2>Recipient Information</h2>
+              <h2>Información del Destinatario</h2>
             </div>
             
             <div className="form-group">
-              <label>Full Name</label>
-              <input type="text" name="recipientFullName" value={formData.recipientFullName} onChange={handleChange} placeholder="Enter the recipient's name" className="input-no-icon" required />
+              <label>Nombre Completo</label>
+              <input type="text" name="recipientFullName" value={formData.recipientFullName} onChange={handleChange} placeholder="Ingrese el nombre del destinatario" className="input-no-icon" required />
             </div>
 
             <div className="form-group">
-              <label>Phone number</label>
+              <label>Número de teléfono</label>
               <div className="input-wrapper">
                 <Phone size={18} className="input-icon" />
                 <input type="tel" name="recipientPhone" value={formData.recipientPhone} onChange={handleChange} placeholder="(000) 000 0000" required />
@@ -161,9 +161,9 @@ const DeliveryForm = () => {
             </div>
 
             <div className="form-group">
-              <label>Address</label>
+              <label>Dirección</label>
               <div className="textarea-wrapper">
-                <textarea name="recipientAddress" value={formData.recipientAddress} onChange={handleChange} placeholder="Street, City, State, Zip Code" required></textarea>
+                <textarea name="recipientAddress" value={formData.recipientAddress} onChange={handleChange} placeholder="Calle, Ciudad, Estado, Código Postal" required></textarea>
                 <Edit2 size={16} className="edit-icon" />
               </div>
             </div>
@@ -173,19 +173,19 @@ const DeliveryForm = () => {
           <div className="form-section">
             <div className="section-title">
               <FileText size={18} className="section-icon" />
-              <h2>Delivery Details</h2>
+              <h2>Detalles de la Entrega</h2>
             </div>
             
             <div className="form-group">
-              <label>Package Description</label>
+              <label>Descripción del Paquete</label>
               <div className="textarea-wrapper">
-                <textarea name="packageDescription" value={formData.packageDescription} onChange={handleChange} placeholder="What are we going to collect and deliver?" required></textarea>
+                <textarea name="packageDescription" value={formData.packageDescription} onChange={handleChange} placeholder="¿Qué vamos a recoger y entregar?" required></textarea>
                 <Edit2 size={16} className="edit-icon" />
               </div>
             </div>
 
             <div className="form-group">
-              <label>When should we start the collection?</label>
+              <label>¿Cuándo debemos comenzar la recogida?</label>
               <div className="collection-buttons">
                 <button 
                   type="button" 
@@ -193,7 +193,7 @@ const DeliveryForm = () => {
                   onClick={() => handleCollectionTime('NOW')}
                   style={formData.collectionTime !== 'NOW' ? { backgroundColor: 'transparent', border: '1px solid #3A3836', color: '#FAFAF9' } : {}}
                 >
-                  <Target size={16} /> Pick up NOW
+                  <Target size={16} /> Recoger AHORA
                 </button>
                 <button 
                   type="button" 
@@ -201,7 +201,7 @@ const DeliveryForm = () => {
                   onClick={() => handleCollectionTime('LATER')}
                   style={formData.collectionTime === 'LATER' ? { backgroundColor: '#F2B705', color: '#110e0b', border: 'none' } : {}}
                 >
-                  <Calendar size={16} /> Schedule for Later
+                  <Calendar size={16} /> Programar para más tarde
                 </button>
               </div>
             </div>
@@ -209,12 +209,12 @@ const DeliveryForm = () => {
 
           <button type="button" className="btn-support">
             <HeadphonesIcon size={18} className="support-icon" />
-            <span>Need help or want to cancel? Call Support: <strong>+1 (800) HUNGER-SUCKS</strong></span>
+            <span>¿Necesita ayuda o desea cancelar? Llame a Soporte: <strong>+1 (800) HUNGER-SUCKS</strong></span>
           </button>
 
           <button type="submit" className="btn-submit" disabled={isSubmitting}>
             {isSubmitting ? <Loader className="spin-icon" size={20} /> : <Truck size={20} />}
-            {isSubmitting ? 'SUBMITTING...' : 'START COLLECTION NOW'}
+            {isSubmitting ? 'ENVIANDO...' : 'COMENZAR RECOGIDA AHORA'}
           </button>
         </form>
       </div>

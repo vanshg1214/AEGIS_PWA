@@ -73,12 +73,12 @@ function App() {
   // Determine button state
   const getButtonContent = () => {
     if (isInstalled) {
-      return { icon: <Check size={20} />, text: 'Downloaded', className: 'btn btn-success', disabled: true };
+      return { icon: <Check size={20} />, text: 'Descargada', className: 'btn btn-success', disabled: true };
     }
     if (isInstalling) {
-      return { icon: <Loader size={20} className="spin-icon" />, text: 'Installing...', className: 'btn btn-installing', disabled: true };
+      return { icon: <Loader size={20} className="spin-icon" />, text: 'Instalando...', className: 'btn btn-installing', disabled: true };
     }
-    return { icon: <Download size={20} />, text: 'Download App', className: 'btn btn-primary', disabled: false };
+    return { icon: <Download size={20} />, text: 'Descargar App', className: 'btn btn-primary', disabled: false };
   };
 
   const buttonState = getButtonContent();

@@ -1,7 +1,7 @@
 {
   "name": "AEGIS",
   "short_name": "AEGIS",
-  "description": "Access AEGIS instantly from your home screen.",
+  "description": "Accede a AEGIS al instante desde tu pantalla de inicio.",
   "start_url": "/",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
